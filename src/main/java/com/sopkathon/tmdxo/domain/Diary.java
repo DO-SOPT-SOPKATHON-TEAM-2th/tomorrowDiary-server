@@ -14,6 +14,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +23,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Diary extends BaseEntity {
 
     @Id
@@ -52,11 +56,11 @@ public class Diary extends BaseEntity {
     private Like like;
 
 
-    public int getLikeCount() {
-        return like.getCount();
-    }
+	public int getLikeCount() {
+		return like.getCount();
+	}
 
-    public void plusLikeCount() {
-        like.plusLikeCount();
-    }
+	public void plusLikeCount() {
+		like.plusLikeCount();
+	}
 }
