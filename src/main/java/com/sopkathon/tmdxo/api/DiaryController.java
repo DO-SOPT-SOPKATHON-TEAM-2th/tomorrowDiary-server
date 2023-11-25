@@ -5,6 +5,7 @@ import com.sopkathon.tmdxo.api.dto.DiaryInfosResponse;
 import com.sopkathon.tmdxo.global.common.response.ApiResponse;
 import com.sopkathon.tmdxo.service.DiaryService;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
