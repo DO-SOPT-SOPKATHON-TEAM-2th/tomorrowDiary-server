@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 @Builder(access = AccessLevel.PRIVATE)
 public class Like extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "like_id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "like_id")
+	private Long id;
 
-    @Column(name = "like_count", nullable = false)
-    private int count;
+	@Column(name = "like_count", nullable = false)
+	private int count;
 
 	public void plusLikeCount() {
 		count++;

@@ -19,18 +19,18 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class DiaryService {
-    private final DiaryRepository diaryRepository;
+	private final DiaryRepository diaryRepository;
 	private final LikeRepository likeRepository;
 
 	@Transactional(readOnly = true)
-    public DiaryInfosResponse findAllTomorrowDiaries() {
-        List<Diary> diaries = diaryRepository.findByDate(LocalDate.now().plusDays(1));
-        List<DiaryInfoResponse> diaryInfos = diaries.stream()
-                .map(DiaryInfoResponse::fromEntity)
-                .toList();
+	public DiaryInfosResponse findAllTomorrowDiaries() {
+		List<Diary> diaries = diaryRepository.findByDate(LocalDate.now().plusDays(1));
+		List<DiaryInfoResponse> diaryInfos = diaries.stream()
+			.map(DiaryInfoResponse::fromEntity)
+			.toList();
 
-        return new DiaryInfosResponse(diaryInfos);
-    }
+		return new DiaryInfosResponse(diaryInfos);
+	}
 
 	public void likeDiary(final Long diaryId) {
 		Diary diary = diaryRepository.findById(diaryId)

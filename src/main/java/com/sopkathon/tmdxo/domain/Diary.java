@@ -27,33 +27,33 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Diary extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "diary_id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "diary_id")
+	private Long id;
 
-    @Column(name = "diary_title", nullable = false, length = 30)
-    private String title;
+	@Column(name = "diary_title", nullable = false, length = 30)
+	private String title;
 
-    @Column(name = "diary_content", nullable = false)
-    private String content;
+	@Column(name = "diary_content", nullable = false)
+	private String content;
 
-    @Column(name = "diary_author", nullable = false, length = 30)
-    private String author;
+	@Column(name = "diary_author", nullable = false, length = 30)
+	private String author;
 
-    @Column(name = "email", nullable = false, length = 50)
-    private String email;
+	@Column(name = "email", nullable = false, length = 50)
+	private String email;
 
-    @Column(name = "diary_date", nullable = false, length = 30)
-    private LocalDate date; //내일 일기이기 때문에 일기의 날짜는 내일 날짜로 저장됨
+	@Column(name = "diary_date", nullable = false, length = 30)
+	private LocalDate date; //내일 일기이기 때문에 일기의 날짜는 내일 날짜로 저장됨
 
-    @Column(name = "emoji_type", nullable = false, length = 30)
-    @Enumerated(value = EnumType.STRING)
-    private EmojiType emojiType;
+	@Column(name = "emoji_type", nullable = false, length = 30)
+	@Enumerated(value = EnumType.STRING)
+	private EmojiType emojiType;
 
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "like_id", nullable = false)
-    private Like like;
+	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+	@JoinColumn(name = "like_id", nullable = false)
+	private Like like;
 
 
 	public int getLikeCount() {

@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class DiaryController {
-    private final DiaryService diaryService;
+	private final DiaryService diaryService;
 
-    @GetMapping("/diaries")
-    @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<DiaryInfosResponse> findAllTomorrowDiaries() {
-        return ApiResponse.success(HttpStatus.OK, "내일 일기 전체 조회에 성공하였습니다.", diaryService.findAllTomorrowDiaries());
-    }
+	@GetMapping("/diaries")
+	@ResponseStatus(HttpStatus.OK)
+	public ApiResponse<DiaryInfosResponse> findAllTomorrowDiaries() {
+		return ApiResponse.success(HttpStatus.OK, "내일 일기 전체 조회에 성공하였습니다.", diaryService.findAllTomorrowDiaries());
+	}
 
 	@PutMapping("/diary/like/{diaryId}")
 	@ResponseStatus(HttpStatus.OK)
