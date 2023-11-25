@@ -14,6 +14,7 @@ public class DiaryInfoResponse {
     private final long diaryId;
     private final String title;
     private final String author;
+    private final String content;
     private final EmojiType emojiType;
     private final int likeCount;
 
@@ -22,6 +23,7 @@ public class DiaryInfoResponse {
                 .diaryId(diary.getId())
                 .title(diary.getTitle())
                 .author(diary.getAuthor())
+                .content(diary.getContent())
                 .emojiType(diary.getEmojiType())
                 .likeCount(diary.getLikeCount())
                 .build();
