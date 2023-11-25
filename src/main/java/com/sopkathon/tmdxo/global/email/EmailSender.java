@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class EmailSender {
     private final JavaMailSender javaMailSender;
 
+    @Async
     public void sendEmail(String email, String content, String author) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
