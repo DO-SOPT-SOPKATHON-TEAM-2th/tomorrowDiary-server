@@ -36,7 +36,7 @@ public class DiaryController {
 
 	@PostMapping("/diary/write")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ApiResponse<DiaryCreateRequest> createDiary(@RequestBody DiaryCreateRequest request) {
+	public ApiResponse<Void> createDiary(@RequestBody DiaryCreateRequest request) {
 		diaryService.createDiary(request);
 		return ApiResponse.success(HttpStatus.CREATED, "일기 작성에 성공하였습니다.");
 	}
