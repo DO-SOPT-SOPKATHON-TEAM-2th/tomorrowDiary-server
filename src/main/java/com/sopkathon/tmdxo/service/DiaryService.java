@@ -46,7 +46,7 @@ public class DiaryService {
 			.content(request.content())
 			.author(request.author())
 			.email(request.email())
-			.date(request.tomorrowDate().plusDays(1))
+			.date(request.tomorrowDate())
 			.emojiType(request.emojiType())
 			.like(like)
 			.build();
