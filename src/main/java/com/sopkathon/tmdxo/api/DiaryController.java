@@ -4,7 +4,9 @@ import com.sopkathon.tmdxo.api.dto.DiaryCreateRequest;
 import com.sopkathon.tmdxo.api.dto.DiaryInfosResponse;
 import com.sopkathon.tmdxo.global.common.response.ApiResponse;
 import com.sopkathon.tmdxo.service.DiaryService;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,10 +36,16 @@ public class DiaryController {
 		return ApiResponse.success(HttpStatus.OK, "좋아요 개수가 정상적으로 증가되었습니다.");
 	}
 
-	@PostMapping("/diary/write")
+	@PostMapping("/diary/add")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ApiResponse<Void> createDiary(@RequestBody DiaryCreateRequest request) {
-		diaryService.createDiary(request);
+	public ApiResponse<Void> addDiary(@RequestBody DiaryCreateRequest request) {
+		diaryService.writeDiary(request);
 		return ApiResponse.success(HttpStatus.CREATED, "일기 작성에 성공하였습니다.");
+	}
+
+	@GetMapping("/diary/count")
+	@ResponseStatus(HttpStatus.OK)
+	public ApiResponse<Integer> findTomorrowDiaryCount() {
+		return ApiResponse.success(HttpStatus.OK, "내일 일기 개수 조회에 성공하였습니다.", diaryService.countTomorrowDiaries());
 	}
 }
