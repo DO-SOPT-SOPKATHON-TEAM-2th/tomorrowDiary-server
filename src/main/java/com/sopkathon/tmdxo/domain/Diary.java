@@ -55,4 +55,8 @@ public class Diary extends BaseEntity {
     public int getLikeCount() {
         return like.getCount();
     }
+
+    public void plusLikeCount() {
+        like.plusLikeCount();
+    }
 }

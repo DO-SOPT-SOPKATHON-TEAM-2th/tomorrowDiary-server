@@ -1,6 +1,7 @@
 package com.sopkathon.tmdxo.api;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import com.sopkathon.tmdxo.global.common.exception.NotFoundException;
 import com.sopkathon.tmdxo.global.common.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionController {
 
     /**
-     * 404 Bad Request
+     * 400 Bad Request
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
@@ -34,6 +35,16 @@ public class ExceptionController {
     protected ApiResponse<Object> handleInvalidFormatException(Exception exception) {
         log.error(exception.getMessage(), exception);
         return ApiResponse.error(HttpStatus.BAD_REQUEST, "검증되지 않은 요청 값이거나, 요청 값의 Type이 잘못되었습니다.");
+    }
+
+    /**
+     * 404 Not Found
+     */
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    protected ApiResponse<Object> handleIllegalArgumentException(NotFoundException exception) {
+        log.error(exception.getMessage(), exception);
+        return ApiResponse.error(HttpStatus.NOT_FOUND, exception.getMessage());
     }
 
     /**

@@ -3,6 +3,7 @@ package com.sopkathon.tmdxo.service;
 import com.sopkathon.tmdxo.api.dto.DiaryInfoResponse;
 import com.sopkathon.tmdxo.api.dto.DiaryInfosResponse;
 import com.sopkathon.tmdxo.domain.Diary;
+import com.sopkathon.tmdxo.global.common.exception.NotFoundException;
 import com.sopkathon.tmdxo.repository.DiaryRepository;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,5 +25,12 @@ public class DiaryService {
                 .toList();
 
         return new DiaryInfosResponse(diaryInfos);
+    }
+
+    public void likeDiary(final Long diaryId) {
+        Diary diary = diaryRepository.findById(diaryId)
+                .orElseThrow(() -> new NotFoundException(String.format("존재하지 않는 다이어리ID(%d) 입니다.", diaryId)));
+
+        diary.plusLikeCount();
     }
 }
