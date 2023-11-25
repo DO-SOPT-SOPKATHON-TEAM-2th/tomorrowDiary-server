@@ -8,7 +8,7 @@ import com.sopkathon.tmdxo.domain.Like;
 import com.sopkathon.tmdxo.global.common.exception.NotFoundException;
 import com.sopkathon.tmdxo.repository.DiaryRepository;
 import com.sopkathon.tmdxo.repository.LikeRepository;
-
+import com.sopkathon.tmdxo.service.vo.TodayDiaryInfoVO;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +30,14 @@ public class DiaryService {
 			.toList();
 
 		return new DiaryInfosResponse(diaryInfos);
+	}
+
+	@Transactional(readOnly = true)
+	public List<TodayDiaryInfoVO> findAllTodayDiaries() {
+		List<Diary> diaries = diaryRepository.findByDate(LocalDate.now());
+		return diaries.stream()
+				.map(TodayDiaryInfoVO::fromEntity)
+				.toList();
 	}
 
 	public void likeDiary(final Long diaryId) {
