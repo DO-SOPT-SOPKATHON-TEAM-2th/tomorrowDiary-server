@@ -14,10 +14,12 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "diaries")
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Diary extends BaseEntity {
 
@@ -39,7 +41,7 @@ public class Diary extends BaseEntity {
     private String email;
 
     @Column(name = "diary_date", nullable = false, length = 30)
-    private LocalDate date;
+    private LocalDate date; //내일 일기이기 때문에 일기의 날짜는 내일 날짜로 저장됨
 
     @Column(name = "emoji_type", nullable = false, length = 30)
     @Enumerated(value = EnumType.STRING)
@@ -48,4 +50,9 @@ public class Diary extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "like_id", nullable = false)
     private Like like;
+
+
+    public int getLikeCount() {
+        return like.getCount();
+    }
 }
