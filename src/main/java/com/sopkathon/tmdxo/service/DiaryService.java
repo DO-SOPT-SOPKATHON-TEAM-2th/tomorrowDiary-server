@@ -39,7 +39,7 @@ public class DiaryService {
 		diary.plusLikeCount();
 	}
 
-	public void createDiary(DiaryCreateRequest request) {
+	public void writeDiary(DiaryCreateRequest request) {
 		Like like = likeRepository.save(Like.newInstance());
 		Diary diary = Diary.builder()
 			.title(request.title())
@@ -52,5 +52,10 @@ public class DiaryService {
 			.build();
 
 		diaryRepository.save(diary);
+	}
+
+	public int countTomorrowDiaries() {
+		List<Diary> diaries = diaryRepository.findByDate(LocalDate.now().plusDays(1));
+		return diaries.size();
 	}
 }
