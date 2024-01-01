@@ -20,6 +20,7 @@
 - MySQL8.0
 - Nginx
 - AWS
+- Spring Mail
 
 <br>
 
